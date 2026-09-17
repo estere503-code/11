@@ -3,119 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pork & Garlic Ice Cream Co. Strategy Tool</title>
+  <title>Pork & Garlic Ice Cream Co.</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Pork & Garlic Ice Cream Co.</h1>
-      <p>Year 1 Verification and Year 2 Winter Strategy Tool</p>
-      <nav>
-        <a href="#verify">Year 1 verification</a>
-        <a href="#tests">Calculation checks</a>
-        <a href="#strategy">Year 2 strategy</a>
-      </nav>
-    </header>
+<main>
+  <header>
+    <div><p class="eyebrow">YEAR 1 VERIFICATION · YEAR 2 WINTER</p><h1>Pork & Garlic Ice Cream Co.</h1><p>Financial verification and strategy planner</p></div>
+    <span class="badge">410,000 units total market forecast</span>
+  </header>
 
-    <section class="notice">
-      <strong>Year 2 Winter total market forecast: 410,000 units.</strong>
-      This is total market demand, not guaranteed company sales.
+  <section class="notice">The 410,000-unit Year 2 Winter forecast is total market demand, not guaranteed company sales. Enter real classroom data before making a decision.</section>
+
+  <section class="card" id="verification">
+    <div class="head"><div><h2>Year 1 verification</h2><p>Uses the same accounting engine as both Winter scenarios.</p></div><button id="example">Load worked example</button></div>
+    <div class="form four">
+      <label>Opening cash, Sh<input id="cash" value="100000"></label>
+      <label>Opening tax losses, Sh<input id="loss" value="0"></label>
+      <label>Milk purchased, tons<input id="milk" value="2"></label>
+      <label>Market investment, Sh<input id="market" value="1000"></label>
+      <label>Requested sales, units<input id="request" value="40000"></label>
+      <label>Allocated sales, units<input id="sales" value="40000"></label>
+      <label>Expected net profit, Sh<input id="expectedProfit" value="-3560"></label>
+      <label>Expected closing cash, Sh<input id="expectedCash" value="71940"></label>
+    </div>
+    <div class="form four">
+      <label>Premise<select id="premise"><option>A</option><option selected>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select></label>
+      <label>Machine<select id="machine"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option></select></label>
+      <label>Machine copies bought<input id="bought" value="1"></label>
+      <label>Production, units<input id="production" value="40000"></label>
+    </div>
+    <button id="check">Check expected results</button>
+    <div id="verifyOutput" class="output"></div>
+  </section>
+
+  <section class="card">
+    <h2>Calculation checks</h2>
+    <button id="tests">Run calculation checks</button>
+    <div id="testOutput" class="output"></div>
+  </section>
+
+  <section id="strategy">
+    <h2>Year 2 Winter strategy</h2>
+    <p>Year 1 baseline costs are unconfirmed for Year 2.</p>
+    <div class="form three card">
+      <label>Year 1 Autumn closing cash, Sh<input id="rollCash" value="100000"></label>
+      <label>Carried tax losses, Sh<input id="rollLoss" value="0"></label>
+      <label>Year 1 annual profit, Sh<input value="0"></label>
+    </div>
+    <div class="plans">
+      <article class="card"><h2>Option A</h2><div id="aInputs"></div><div id="aOutput" class="output"></div></article>
+      <article class="card"><h2>Option B</h2><div id="bInputs"></div><div id="bOutput" class="output"></div></article>
+    </div>
+    <section class="card"><h2>Comparison</h2><div id="compare"></div></section>
+    <section class="card">
+      <h2>Team decision</h2>
+      <label>Recommended strategy<textarea>Choose after entering real Year 1 results.</textarea></label>
+      <label>Key assumption<textarea>Trainer allocation is sufficient to sell planned units.</textarea></label>
+      <label>Risk mitigation<textarea>Lower sales reduce revenue but not committed milk, rent, maintenance, market investment, machine, or finance costs.</textarea></label>
     </section>
-
-    <section id="verify" class="card">
-      <div class="section-head">
-        <div>
-          <h2>Year 1 verification</h2>
-          <p>Use your real classroom season or load the official worked example.</p>
-        </div>
-        <button id="loadExample">Load worked example</button>
-      </div>
-
-      <div class="grid two">
-        <label>Opening cash (Sh)<input id="openingCash" value="100000"></label>
-        <label>Opening tax-loss pool (Sh)<input id="lossPool" value="0"></label>
-        <label>Milk bought (tons)<input id="vMilk" value="2"></label>
-        <label>Market investment (Sh)<input id="vMarket" value="1000"></label>
-        <label>Requested sales (units)<input id="vRequest" value="40000"></label>
-        <label>Actual allocated sales (units)<input id="vSales" value="40000"></label>
-        <label>Expected net profit / loss (Sh)<input id="expectedProfit" value="-3560"></label>
-        <label>Expected closing cash (Sh)<input id="expectedCash" value="71940"></label>
-      </div>
-
-      <h3>Production by premise</h3>
-      <div class="grid four">
-        <label>Premise
-          <select id="vPremise">
-            <option>A</option><option selected>B</option><option>C</option>
-            <option>D</option><option>E</option><option>F</option>
-          </select>
-        </label>
-        <label>Machine type
-          <select id="vMachine">
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-            <option selected>5</option><option>6</option>
-          </select>
-        </label>
-        <label>Machine copies bought<input id="vBought" value="1"></label>
-        <label>Production (units)<input id="vProduction" value="40000"></label>
-      </div>
-
-      <button id="checkExample">Check expected results</button>
-      <div id="verificationOutput" class="output"></div>
-    </section>
-
-    <section id="tests" class="card">
-      <h2>Calculation checks</h2>
-      <p>Runs the official worked example and core accounting-rule checks.</p>
-      <button id="runTests">Run calculation checks</button>
-      <div id="testOutput" class="output"></div>
-    </section>
-
-    <section id="strategy">
-      <div class="section-head">
-        <div>
-          <h2>Year 2 Winter strategy</h2>
-          <p>Sample values are placeholders. Enter your real Year 1 classroom results.</p>
-        </div>
-        <button id="copyA">Copy Option A to B</button>
-      </div>
-
-      <section class="card">
-        <h3>Year 1 autumn roll-over</h3>
-        <div class="grid three">
-          <label>Autumn closing cash (Sh)<input id="rollCash" value="100000"></label>
-          <label>Carried tax losses (Sh)<input id="rollLoss" value="0"></label>
-          <label>Year 1 annual profit (reference)<input id="annualProfit" value="0"></label>
-        </div>
-        <p class="small">Year 1 baseline costs are unconfirmed for Year 2. Update estimates when the trainer provides new rules.</p>
-      </section>
-
-      <div class="options">
-        <section class="card option" data-option="A">
-          <h2>Option A</h2>
-          <div class="plan-inputs"></div>
-          <div class="plan-output output"></div>
-        </section>
-
-        <section class="card option" data-option="B">
-          <h2>Option B</h2>
-          <div class="plan-inputs"></div>
-          <div class="plan-output output"></div>
-        </section>
-      </div>
-
-      <section class="card">
-        <h2>Comparison and decision</h2>
-        <div id="comparison"></div>
-        <div class="grid one">
-          <label>Recommended strategy<textarea id="recommendation">Choose after entering your real Year 1 results.</textarea></label>
-          <label>Key assumption<textarea id="assumption">Trainer allocation is sufficient to sell planned units.</textarea></label>
-          <label>Risk mitigation<textarea id="risk">Lower allocated sales reduce revenue but do not reduce committed milk, rent, maintenance, market investment, machine, or financing costs.</textarea></label>
-        </div>
-      </section>
-    </section>
-  </main>
-  <script src="app.js"></script>
+  </section>
+</main>
+<script src="app.js"></script>
 </body>
 </html>
